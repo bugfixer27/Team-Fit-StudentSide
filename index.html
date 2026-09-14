@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Team Fit · Riverdale Science Olympiad</title>
+  <meta name="description" content="Who is on which team and in which events — Riverdale Science Olympiad." />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0b0a0e" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='22' cy='38' r='14' fill='%238a1c34'/%3E%3Ccircle cx='42' cy='38' r='14' fill='%23d4a72c' fill-opacity='.9'/%3E%3Ccircle cx='32' cy='22' r='14' fill='%23c9a77c' fill-opacity='.9'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Ambient constellation: one particle per person once the roster arrives -->
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div id="spotlight" aria-hidden="true"></div>
+  <div id="grain" aria-hidden="true"></div>
+
+  <!-- Loader: shown from first paint until the roster has loaded -->
+  <div id="loader" role="status" aria-live="polite">
+    <div class="orbits" aria-hidden="true">
+      <span class="orbit o1"></span>
+      <span class="orbit o2"></span>
+      <span class="orbit o3"></span>
+      <span class="core"></span>
+    </div>
+    <p class="loader-title">TEAM FIT</p>
+    <p class="loader-msg" id="loader-msg">Opening the roster…</p>
+    <p class="loader-sub" id="loader-sub"></p>
+  </div>
+
+  <header id="nav" class="nav" aria-label="Site">
+    <div class="nav-progress" id="nav-progress" aria-hidden="true"></div>
+    <a class="brand" href="#top" aria-label="Team Fit home">
+      <span class="brand-dots" aria-hidden="true"><i class="d-a"></i><i class="d-b"></i><i class="d-c"></i></span>
+      <span class="brand-word">Team Fit</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#teams" data-nav="teams">Teams</a>
+      <a href="#events" data-nav="events">Events</a>
+      <a href="#directory" data-nav="directory">Directory</a>
+    </nav>
+    <label class="search" for="search-input">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="search-input" type="search" placeholder="Find a name, event, or grade" autocomplete="off" spellcheck="false" />
+      <kbd>/</kbd>
+    </label>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <p class="eyebrow reveal" data-i="0"><span>Riverdale Science Olympiad</span><span class="sep"></span><span>Division C</span></p>
+      <h1 class="title" aria-label="Team Fit">
+        <span class="word" data-word="TEAM"></span>
+        <span class="word" data-word="FIT"></span>
+      </h1>
+      <p class="lede reveal" data-i="2">Three teams. Twenty-four events. Every name, exactly where it belongs.</p>
+      <div class="hero-stats reveal" data-i="3">
+        <div class="stat"><b data-count="0" id="stat-people">0</b><span>students placed</span></div>
+        <div class="stat"><b data-count="0" id="stat-events">0</b><span>events</span></div>
+        <div class="stat"><b data-count="0" id="stat-slots">0</b><span>event seats filled</span></div>
+      </div>
+      <div class="hero-teams reveal" data-i="4" id="hero-teams"></div>
+      <a class="scroll-cue" href="#teams" aria-label="Scroll to teams"><span></span></a>
+      <p class="version" id="version"></p>
+    </section>
+
+    <!-- TEAMS -->
+    <section id="teams" class="teams">
+      <header class="section-head">
+        <p class="kicker reveal">01 — Rosters</p>
+        <h2 class="reveal" data-i="1"><span class="line">Three teams,</span> <span class="line">one roster.</span></h2>
+        <p class="section-note reveal" data-i="2">Tap any name for their full event card.</p>
+      </header>
+      <div class="team-grid" id="team-grid"></div>
+      <div id="unplaced" class="unplaced" hidden></div>
+    </section>
+
+    <!-- EVENTS (pinned horizontal gallery) -->
+    <section id="events" class="events">
+      <div class="events-sticky">
+        <header class="section-head events-head">
+          <p class="kicker reveal">02 — Events</p>
+          <h2 class="reveal" data-i="1"><span class="line">Every event,</span> <span class="line">every seat.</span></h2>
+          <div class="filters reveal" data-i="2" role="group" aria-label="Filter by team">
+            <button class="chip is-on" data-team="all">All</button>
+            <button class="chip chip-a" data-team="A">Maroon</button>
+            <button class="chip chip-b" data-team="B">Gold</button>
+            <button class="chip chip-c" data-team="C">Tan</button>
+          </div>
+        </header>
+        <div class="events-track" id="events-track"></div>
+        <div class="events-rail" aria-hidden="true"><i id="events-rail-fill"></i></div>
+        <p class="events-hint" aria-hidden="true">scroll to glide →</p>
+      </div>
+    </section>
+
+    <!-- DIRECTORY -->
+    <section id="directory" class="directory">
+      <header class="section-head">
+        <p class="kicker reveal">03 — Directory</p>
+        <h2 class="reveal" data-i="1"><span class="line">Everyone,</span> <span class="line">A to Z.</span></h2>
+      </header>
+      <div class="dir-head" aria-hidden="true">
+        <span>Name</span><span>Grade</span><span>Team</span><span>Events</span><span>Email</span>
+      </div>
+      <ol class="dir-list" id="dir-list"></ol>
+      <p class="empty" id="dir-empty" hidden>No one matches that. Try a first name, an event, or a grade like “11”.</p>
+    </section>
+
+    <footer class="foot">
+      <p><span class="brand-dots" aria-hidden="true"><i class="d-a"></i><i class="d-b"></i><i class="d-c"></i></span> Team Fit · Riverdale Science Olympiad</p>
+      <p class="muted" id="foot-meta"></p>
+    </footer>
+  </main>
+
+  <!-- Person dossier drawer -->
+  <div id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-scrim" id="drawer-scrim"></div>
+    <aside class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-name">
+      <button class="drawer-close" id="drawer-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="drawer-body" id="drawer-body"></div>
+    </aside>
+  </div>
+
+  <script src="config.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
