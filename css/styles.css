@@ -175,7 +175,7 @@ body.is-ready .scroll-cue { opacity: 1; }
 .team::before { content: ''; position: absolute; inset: -40% -20% auto; height: 60%; background: radial-gradient(closest-side, color-mix(in srgb, var(--g) 26%, transparent), transparent); pointer-events: none; }
 .team::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--g), transparent); opacity: 0.9; }
 .team-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 18px; position: relative; }
-.team-name { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 3.2vw, 44px); letter-spacing: -0.03em; line-height: 1; color: var(--k); margin: 0; }
+.team-name { font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 2.6vw, 38px); letter-spacing: -0.03em; line-height: 1; color: var(--k); margin: 0; }
 .team-sub { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); margin: 6px 0 0; }
 .team-count { font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1; color: var(--g); font-variant-numeric: tabular-nums; }
 .team-count small { display: block; font-family: var(--font-mono); font-weight: 400; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); text-align: right; margin-top: 4px; }
@@ -252,7 +252,7 @@ body.is-ready .scroll-cue { opacity: 1; }
 .ecard-type::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
 .ecard.is-dim { opacity: 0.22; }
 .erows { display: grid; gap: 10px; margin-top: auto; }
-.erow { --g: var(--tan-glow); --k: var(--tan-ink); display: grid; grid-template-columns: 58px 1fr; gap: 10px; align-items: start; padding-top: 10px; border-top: 1px solid var(--line); transition: opacity 0.35s; }
+.erow { --g: var(--tan-glow); --k: var(--tan-ink); display: grid; grid-template-columns: 72px 1fr; gap: 10px; align-items: start; padding-top: 10px; border-top: 1px solid var(--line); transition: opacity 0.35s; }
 .erow-a { --g: var(--maroon-glow); --k: var(--maroon-ink); } .erow-b { --g: var(--gold-glow); --k: var(--gold-ink); } .erow-c { --g: var(--tan-glow); --k: var(--tan-ink); }
 .erow.is-off { opacity: 0.18; }
 .erow-team { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g); padding-top: 4px; }

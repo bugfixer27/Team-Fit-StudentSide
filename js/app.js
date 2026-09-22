@@ -151,7 +151,7 @@ function renderEvents() {
       const names = ev.teams[t].length
         ? ev.teams[t].map(p => `<button class="who" type="button" data-email="${esc(p.email)}">${esc(p.name)}</button>`).join('')
         : `<span class="who-empty">open</span>`;
-      return `<div class="erow erow-${T.slug[0]}" data-team="${t}"><span class="erow-team">${T.name}</span><span class="erow-names">${names}</span></div>`;
+      return `<div class="erow erow-${T.slug[0]}" data-team="${t}"><span class="erow-team">${T.short}</span><span class="erow-names">${names}</span></div>`;
     }).join('');
     track.appendChild(h(`<article class="ecard type-${esc(ev.type)}" data-event="${esc(ev.name)}" data-i="${i}">
       <span class="ecard-idx">${String(i + 1).padStart(2, '0')} / ${model.events.length}</span>
@@ -176,7 +176,7 @@ function renderDirectory() {
     const li = h(`<li class="dir-row" data-email="${esc(p.email)}" style="--i:${i % 12};${T ? `--c:${T.glow}` : ''}" tabindex="0" role="button">
       <span class="dir-name"><i></i><span class="txt">${esc(p.name)}</span></span>
       <span class="dir-grade">${esc(gradeLabel(p.grade))}</span>
-      <span class="dir-team"><b>${T ? T.name : '—'}</b></span>
+      <span class="dir-team"><b>${T ? T.short : '—'}</b></span>
       <span class="dir-events">${p.events.length ? p.events.map(e => `<span class="tag" data-ev="${esc(e.name)}">${esc(e.name)}</span>`).join('') : '<span class="who-empty">no events yet</span>'}</span>
       <a class="dir-email" href="mailto:${esc(p.email)}" onclick="event.stopPropagation()">${esc(p.email)}</a>
     </li>`);
