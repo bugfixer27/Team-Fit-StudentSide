@@ -96,11 +96,6 @@ function renderHero() {
   const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect();
     fx.countUp($('stat-people'), model.totals.placed); fx.countUp($('stat-events'), model.totals.events, 1300); fx.countUp($('stat-slots'), slots, 1900); } });
   io.observe(heroStats);
-  const wrap = $('hero-teams'); wrap.innerHTML = '';
-  for (const t of TEAM_KEYS) {
-    const T = TEAMS[t];
-    wrap.appendChild(h(`<a class="pill" href="#team-${T.slug}" style="--c:${T.glow}"><i></i>${T.name} <b>${model.stats[t].members}</b></a>`));
-  }
 }
 
 function personCard(p, i) {
@@ -120,7 +115,7 @@ function renderTeams() {
     const maxG = Math.max(1, ...Object.values(S.grades));
     const el = h(`<article class="team team-${T.slug[0]}" id="team-${T.slug}" style="--i:${ti}">
       <div class="team-top">
-        <div><h3 class="team-name">${T.name}</h3><p class="team-sub">${T.tagline} · ${S.slotsFilled}/${S.slotsTotal} seats</p></div>
+        <div><h3 class="team-name">${T.name}</h3><p class="team-sub">${S.slotsFilled}/${S.slotsTotal} seats</p></div>
         <div class="team-count">${S.members}<small>members</small></div>
       </div>
       <div class="team-meter"><i style="--p:${S.slotsTotal ? S.slotsFilled / S.slotsTotal : 0}"></i></div>
@@ -191,7 +186,7 @@ function openPerson(email) {
   const panel = document.querySelector('.drawer-panel');
   panel.className = 'drawer-panel' + (T ? ' t-' + T.key : '');
   $('drawer-body').innerHTML = `
-    <span class="dr-team"><i></i>${T ? `${T.name} · ${T.tagline}` : 'Not placed yet'}</span>
+    <span class="dr-team"><i></i>${T ? T.name : 'Not placed yet'}</span>
     <h2 class="dr-name">${esc(p.name)}</h2>
     <p class="dr-sub">${esc(gradeLabel(p.grade))}</p>
     <a class="dr-email" href="mailto:${esc(p.email)}">${esc(p.email)}</a>
