@@ -5,7 +5,7 @@
 export const TEAMS = {
   A: { key: 'A', name: 'Maroon', short: 'Maroon', slug: 'maroon', color: '#8a1c34', glow: '#c2334f', ink: '#ffd9df', tagline: 'Team A' },
   B: { key: 'B', name: 'Gold',   short: 'Gold',   slug: 'gold',   color: '#d4a72c', glow: '#f2c94c', ink: '#fff2c7', tagline: 'Team B' },
-  C: { key: 'C', name: '9th Grade Team', short: '9th Grade', slug: 'tan', color: '#c9a77c', glow: '#e8cfa6', ink: '#fff5e6', tagline: 'Tan' }
+  C: { key: 'C', name: 'C Team', short: 'C Team', slug: 'tan', color: '#c9a77c', glow: '#e8cfa6', ink: '#fff5e6', tagline: 'Tan' }
 };
 export const TEAM_KEYS = ['A', 'B', 'C'];
 
