@@ -18,7 +18,7 @@ const MESSAGES = [
   'Opening the roster…',
   'Waking up the spreadsheet — the first visit of the day can take up to a minute…',
   'Counting heads…',
-  'Sorting maroon from gold from tan…',
+  'Sorting maroon from gold from beige…',
   'Matching every name to every event…',
   'Almost there — polishing the medals…'
 ];
